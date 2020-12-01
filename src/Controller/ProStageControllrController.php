@@ -25,17 +25,9 @@ class ProStageControllrController extends AbstractController
     }
 	
 	/**
-     * @Route("/stages", name="pro_stage_stages")
-     */
-    public function afficherPage_stages(): Response
-    {
-        return $this->render('pro_stage_stages/index.html.twig');
-    }
-	
-	/**
      * @Route("/stages/stage_specifique", name="pro_stage_stage_specifique")
      */
-    public function afficherPage_stages_stageSpecifique(): Response
+    public function afficherPage_stageSpecifique(): Response
     {
         return $this->render('pro_stage_stage_specifique/index.html.twig', [
 			'controller_id' => '"stage spécifique"',
