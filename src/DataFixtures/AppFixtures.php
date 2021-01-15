@@ -99,7 +99,7 @@ class AppFixtures extends Fixture
 			//- et inversement
 			$rdmNbStage = $faker->numberBetween($min = 1, $max = count($tableauFormations));
 			for ($numFormation=0; $numFormation < $rdmNbStage; $numFormation++){
-				$rdmFormation =  array_rand($tableauFormations, 1);
+				$rdmFormation = array_rand($tableauFormations, 1);
 				$stage-> addFormation($rdmFormation);
 					//réciproque
 					$emplacementFormationTraitee = array_search($rdmFormation, $tableauFormations);	//cherche emplacement Formation courante
@@ -107,8 +107,9 @@ class AppFixtures extends Fixture
 					$manager->persist($tableauFormations[$emplacementFormationTraitee]);			//enregistre la modification
 			}
 			
-			$emplacementStageTraite = array_search($stage, $tableauStages);
-			$manager->persist($tableauStages[$emplacementStageTraite]);		
+			$emplacementStageTraite = array_search($stage, $tableauStages);	// 	/
+			$manager->persist($tableauStages[$emplacementStageTraite]);		//	$manager->persist($stage) ?
+			
 		}
 		
         $manager->flush();
