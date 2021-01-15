@@ -47,7 +47,10 @@ class AppFixtures extends Fixture
 			
 				array_push($tableauFormations, $LMathsInf);
 		}
-		
+		// Mise en persistance des objets formation
+        foreach ($tableauFormations as $formation) {
+            $manager->persist($formation);
+        }
 		
 		/* Création des différentes entreprises */
 		$tableauEntreprises = array();
@@ -60,7 +63,10 @@ class AppFixtures extends Fixture
 			
 				array_push($tableauEntreprises, $Entreprise);
 		}
-
+		// Mise en persistance des objets entreprise
+        foreach ($tableauEntreprises as $entreprise) {
+            $manager->persist($entreprise);
+        }
 		
 		/* Création des différentes stages */
 		$tableauStages = array();
@@ -76,6 +82,7 @@ class AppFixtures extends Fixture
 			
 				array_push($tableauStages, $Stage);
 		}
+		// La mise en persistance des stages sera faite dans la création des liens entre les entités
 		
 		/* Création des liens entre les différentes entités */
 		//donner entreprise/formation(s) a chaque stage - et inversement, donner les stages aux entreprises et aux formations
@@ -84,8 +91,10 @@ class AppFixtures extends Fixture
 			$rdmEntreprise = array_rand($tableauEntreprises, 1);
 			$stage-> setEntreprise ($rdmEntreprise);
 				//réciproque
-				$emplacementEntrepriseTraitee = array_search($rdmEntreprise, $tableauEntreprises);
-				$manager->persist($tableauEntreprises[$emplacementEntrepriseTraitee]);
+				$emplacementEntrepriseTraitee = array_search($rdmEntreprise, $tableauEntreprises); 	//cherche emplacement Entreprise courante
+				$tableauEntreprises[$emplacementEntrepriseTraitee]-> addStage($stage);				//y ajoute le stage	
+				$manager->persist($tableauEntreprises[$emplacementEntrepriseTraitee]);				//enregistre la modification
+			
 			//donner une/des formation(s) aléatoire(s) au stage (e.q : un stage peut proposer la formation au DUT de Paris, mais pas au DUT de St-Etienne)
 			//- et inversement
 			$rdmNbStage = $faker->numberBetween($min = 1, $max = count($tableauFormations));
@@ -93,14 +102,14 @@ class AppFixtures extends Fixture
 				$rdmFormation =  array_rand($tableauFormations, 1);
 				$stage-> addFormation($rdmFormation);
 					//réciproque
-					$emplacementFormationTraitee = array_search($rdmFormation, $tableauFormations);
-					$manager->persist($tableauFormations[$emplacementFormationTraitee]);
+					$emplacementFormationTraitee = array_search($rdmFormation, $tableauFormations);	//cherche emplacement Formation courante
+					$tableauFormations[$emplacementFormationTraitee]-> addStage($stage);			//y ajoute le stage	
+					$manager->persist($tableauFormations[$emplacementFormationTraitee]);			//enregistre la modification
 			}
-			$manager->persist($stage);
 			
-			
+			$emplacementStageTraite = array_search($stage, $tableauStages);
+			$manager->persist($tableauStages[$emplacementStageTraite]);		
 		}
-		
 		
         $manager->flush();
     }
