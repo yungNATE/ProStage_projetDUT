@@ -35,7 +35,7 @@ class Stage
     private $dateDebut;
 
     /**
-     * @ORM\Column(type="dateinterval")
+     * @ORM\Column(type="string")
      */
     private $duree;
 
@@ -106,12 +106,12 @@ class Stage
         return $this;
     }
 
-    public function getDuree(): ?\DateInterval
+    public function getDuree(): ?string
     {
         return $this->duree;
     }
 
-    public function setDuree(\DateInterval $duree): self
+    public function setDuree(string $duree): self
     {
         $this->duree = $duree;
 
