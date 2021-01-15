@@ -1,14 +1,46 @@
-{% extends 'base.html.twig' %}
+<!--stage_id-->
+{% block headerMenu %}
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
+		<head>
+		  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+		</head>
+
+		<div class="container">
+			<div class="row">
+			  <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+				<div class="container">
+				  <div class="navbar-header">
+					
+					<h1 style="color: white">ProStage<h1/>
+				  </div>
+				</div>
+			  </div>
+			 </div>
+		</div>
+{% endblock %}
+{% block titre %}
+<h1 style ="margin-top:120px;">Titre</h1>
+<br>
+<h2>NomEntreprise - ActivitéEntreprise</h2>
+<h3>@mail - Adresse physique</h3>
+<br>
+<br>
+{% endblock %}
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Cette page affichera le descriptif du stage ayant pour identifiant {{ id_stage }}!</h1>
-
-</div>
-
+<CENTER>
+	<p>
+	Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+	Pellentesque consequat suscipit diam, eget tincidunt risus vestibulum sed. 
+	Maecenas et lobortis justo. 
+	Fusce aliquet commodo turpis, nec pretium dui sagittis eget. 
+	Etiam efficitur turpis in risus porta, nec condimentum odio porttitor. 
+	Pellentesque venenatis vitae ipsum nec pellentesque. 
+	Aliquam luctus ligula vitae nibh posuere consequat. 
+	Fusce sed malesuada sem, quis finibus ante. 
+	Mauris hendrerit est ante, vel imperdiet sem semper sed. Nullam rhoncus elit in luctus interdum. 
+	Praesent tempor egestas tincidunt.
+	</p>
+</CENTER>
 {% endblock %}
